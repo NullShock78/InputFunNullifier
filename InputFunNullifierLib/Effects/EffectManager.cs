@@ -37,6 +37,18 @@ namespace InputFunNullifier.Effects
             }
         }
 
+        public static T GetEffect<T>(string id) where T : Effect
+        {
+            try
+            {
+                return (T)Effects[id];
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static void ActivateEffect(string id)
         {
             Effects[id].Activate();

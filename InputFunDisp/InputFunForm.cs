@@ -16,6 +16,7 @@ using InputFunNullifier.Effects;
 using InputFunNullifier.Effects.BuiltIn;
 using SharpDX.XInput;
 using System.Timers;
+using InputFunNullifier.Twitch;
 
 namespace InputFunDisp
 {
@@ -47,6 +48,8 @@ namespace InputFunDisp
 
         private void InputFunForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            StopUpdateLoop();
+            TwitchManager.Disconnect();
             CtlrManager.ShutDown();
             StopInputDebug();
         }
@@ -136,8 +139,8 @@ namespace InputFunDisp
         private async void bCreateVirt_Click(object sender, EventArgs e)
         {
             bCreateVirt.Enabled = false;
-
-            var controller = CtlrManager.CreateVirtualController();
+            
+            var controller = CtlrManager.CreateOutputController();
             funOutput = new FunController(controller);
             await Task.Delay(6000);
 
@@ -291,6 +294,26 @@ namespace InputFunDisp
         private void bChangeInput_Click(object sender, EventArgs e)
         {
             input = new XInputController((int)nmInputController.Value);
+        }
+
+        private void bConnectTwitch_Click(object sender, EventArgs e)
+        {
+            var myRule = new TwitchRule("AddDelayTest",(command) => 
+            {
+                if (command.ArgumentsAsList.Count > 0 && int.TryParse(command.ArgumentsAsList[0], out int delayAdd))
+                {
+                    var effect = EffectManager.GetEffect<InputDelay>("Delay");
+                    effect.ChangeDelay(effect.Delay + delayAdd);
+                    this.Invoke(new Action(() =>
+                    {
+                        nmDelay.Value = effect.Delay;
+                    }));
+                }
+            });
+            myRule.Settings.Command = "delay";
+            TwitchManager.AddRule(myRule);
+            TwitchManager.Connect(tbChannelToWatch.Text, tbUsername.Text, tbOauth.Text);
+
         }
     }
 }

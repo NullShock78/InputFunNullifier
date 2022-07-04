@@ -31,8 +31,12 @@ namespace InputFunNullifier
             CurBindings = Bindings.Default;
         }
 
-        public static IXbox360Controller CreateVirtualController()
+        public static IXbox360Controller CreateOutputController()
         {
+            foreach (var c in virtualControllers)
+            {
+                c.Disconnect();
+            }
             client.Dispose();
             client = new ViGEmClient();
             IXbox360Controller controller = client.CreateXbox360Controller();
@@ -55,10 +59,7 @@ namespace InputFunNullifier
         {
             foreach (var c in virtualControllers)
             {
-                //try
-                //{
                 c.Disconnect();
-                //}//catch (Nefarius.ViGEm.Client.Exceptions.conn)
             }
 
             client.Dispose();

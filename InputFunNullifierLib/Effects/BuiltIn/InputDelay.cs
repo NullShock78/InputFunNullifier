@@ -77,15 +77,17 @@ namespace InputFunNullifier.Effects.BuiltIn
 
         public void ChangeDelay(int ndel)
         {
+            //var oldDelay = delay;
+            //So long as the downwards delay change is small, there should not be an issue with colliding delay. Just make sure the added delay per change is greater than the removed (2, 1)
             delay = ndel;
-            if (ndel < delay)
-            {
-                lock (lockObj)
-                {
-                    inputList.Reset();
-                }
-                if (curDelTmr > ndel) curDelTmr = ndel;
-            }
+            //if (ndel < oldDelay)
+            //{
+            //    lock (lockObj)
+            //    {
+            //        inputList.Reset();
+            //    }
+            //    if (curDelTmr > ndel) curDelTmr = ndel;
+            //}
         }
 
         public void RecieveData(Gamepad dat)
@@ -185,13 +187,11 @@ namespace InputFunNullifier.Effects.BuiltIn
         public Gamepad? DoCycle(int dt)
         {
             Gamepad? ret = null;
-            //Might do multithreaded
             for (int j = 0; j < curInd; j++)
             {
                 bool r = inputList[j].TimeCheck(dt);
                 if (r)
                 {
-                    //should only be one
                     ret = inputList[j].data;
                 }
 

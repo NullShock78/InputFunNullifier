@@ -68,6 +68,13 @@ namespace InputFunDisp
             this.bInputDebug = new System.Windows.Forms.Button();
             this.bChangeOutput = new System.Windows.Forms.Button();
             this.bChangeInput = new System.Windows.Forms.Button();
+            this.tbOauth = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.tbChannelToWatch = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.bConnectTwitch = new System.Windows.Forms.Button();
             this.pInLParent.SuspendLayout();
             this.panelDelay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmInputController)).BeginInit();
@@ -120,7 +127,7 @@ namespace InputFunDisp
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(431, 9);
+            this.label2.Location = new System.Drawing.Point(431, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 21);
             this.label2.TabIndex = 16;
@@ -132,13 +139,18 @@ namespace InputFunDisp
             this.nmInputController.Name = "nmInputController";
             this.nmInputController.Size = new System.Drawing.Size(109, 20);
             this.nmInputController.TabIndex = 18;
+            this.nmInputController.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblOutputInd
             // 
             this.lblOutputInd.AutoSize = true;
             this.lblOutputInd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOutputInd.ForeColor = System.Drawing.Color.White;
-            this.lblOutputInd.Location = new System.Drawing.Point(302, 261);
+            this.lblOutputInd.Location = new System.Drawing.Point(302, 155);
             this.lblOutputInd.Name = "lblOutputInd";
             this.lblOutputInd.Size = new System.Drawing.Size(88, 13);
             this.lblOutputInd.TabIndex = 19;
@@ -197,6 +209,7 @@ namespace InputFunDisp
             // 
             // bConnect
             // 
+            this.bConnect.Enabled = false;
             this.bConnect.Location = new System.Drawing.Point(134, 48);
             this.bConnect.Name = "bConnect";
             this.bConnect.Size = new System.Drawing.Size(85, 25);
@@ -306,7 +319,7 @@ namespace InputFunDisp
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(421, 260);
+            this.label5.Location = new System.Drawing.Point(418, 253);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 21);
             this.label5.TabIndex = 36;
@@ -505,12 +518,85 @@ namespace InputFunDisp
             this.bChangeInput.Visible = false;
             this.bChangeInput.Click += new System.EventHandler(this.bChangeInput_Click);
             // 
+            // tbOauth
+            // 
+            this.tbOauth.Location = new System.Drawing.Point(220, 394);
+            this.tbOauth.Name = "tbOauth";
+            this.tbOauth.PasswordChar = '*';
+            this.tbOauth.Size = new System.Drawing.Size(160, 20);
+            this.tbOauth.TabIndex = 54;
+            this.tbOauth.Text = "haha nope";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(217, 378);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 55;
+            this.label7.Text = "Oauth";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(217, 338);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 56;
+            this.label8.Text = "User";
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Location = new System.Drawing.Point(220, 355);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(160, 20);
+            this.tbUsername.TabIndex = 57;
+            // 
+            // tbChannelToWatch
+            // 
+            this.tbChannelToWatch.Location = new System.Drawing.Point(219, 317);
+            this.tbChannelToWatch.Name = "tbChannelToWatch";
+            this.tbChannelToWatch.Size = new System.Drawing.Size(160, 20);
+            this.tbChannelToWatch.TabIndex = 59;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(216, 300);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 58;
+            this.label9.Text = "Channel";
+            // 
+            // bConnectTwitch
+            // 
+            this.bConnectTwitch.Location = new System.Drawing.Point(386, 367);
+            this.bConnectTwitch.Name = "bConnectTwitch";
+            this.bConnectTwitch.Size = new System.Drawing.Size(71, 47);
+            this.bConnectTwitch.TabIndex = 60;
+            this.bConnectTwitch.Text = "Connect Twitch";
+            this.bConnectTwitch.UseVisualStyleBackColor = true;
+            this.bConnectTwitch.Click += new System.EventHandler(this.bConnectTwitch_Click);
+            // 
             // InputFunForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.bConnectTwitch);
+            this.Controls.Add(this.tbChannelToWatch);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.tbUsername);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tbOauth);
             this.Controls.Add(this.bChangeInput);
             this.Controls.Add(this.bChangeOutput);
             this.Controls.Add(this.bInputDebug);
@@ -603,6 +689,13 @@ namespace InputFunDisp
         private System.Windows.Forms.Button bInputDebug;
         private System.Windows.Forms.Button bChangeOutput;
         private System.Windows.Forms.Button bChangeInput;
+        private System.Windows.Forms.TextBox tbOauth;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbUsername;
+        private System.Windows.Forms.TextBox tbChannelToWatch;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button bConnectTwitch;
     }
 }
 
